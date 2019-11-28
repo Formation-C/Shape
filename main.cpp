@@ -14,6 +14,10 @@ class Shape
 
     Shape(int _angle,  int _height, int _width): angle(_angle),height(_height),width(_width)
     {
+        if (width < 0)
+        {
+            throw "ERROR !! width < 0";
+        }
         cout << "constructor SHAPE"  << endl;
     }
 
@@ -23,6 +27,10 @@ class Shape
     }
 
     virtual int getAera() = 0;
+
+    virtual void WhatAmI(){
+        cout << "i am Shape" << endl;
+    }
 };
 
 class Triangule : public Shape
@@ -40,6 +48,11 @@ class Triangule : public Shape
     int getAera()
     {
         return height * width / 2;
+    }
+
+    void WhatAmI(){
+        Shape::WhatAmI();
+        cout << "i am Triangle" << endl;
     }
 };
 
@@ -74,11 +87,14 @@ int main()
     Triangule triangule(10,5);
     Rectangle rectangle(10 ,5);
 
+
+    triangule.WhatAmI();
+    //rect = new Rectangle(10,5);
+
     //cout << triangule.getAera() << endl;
     //cout << rectangle.getAera() << endl;
 
-    displayAera(triangule);
-
+    //displayAera(triangule);
     //cout << "Hello world!" << endl;
     return 0;
 }
